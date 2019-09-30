@@ -52,13 +52,13 @@ public class ThreeSum {
 
     public static void main(String[] args) {
         ThreeSum ts = new ThreeSum();
-        var result = ts.threeSum(new int[]{-1, 0, 1, 2, -1, -4});
+        List<List<Integer>> result = ts.threeSum(new int[]{-1, 0, 1, 2, -1, -4});
         ts.printArray(result);
     }
 
     private void printArray(List<List<Integer>> list) {
-        for (var subList : list) {
-            for (var i : subList) {
+        for (List<Integer> subList : list) {
+            for (int i : subList) {
                 System.out.print(i + " ");
             }
             System.out.println();

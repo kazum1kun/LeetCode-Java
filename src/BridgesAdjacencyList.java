@@ -1,8 +1,12 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Math.min;
+
 /**
  * Find all bridges in an undirected graph
+ *
+ * @author William Fiset, william.alexandre.fiset@gmail.com
  */
 public class BridgesAdjacencyList {
     private int n, id;
@@ -16,10 +20,6 @@ public class BridgesAdjacencyList {
         if (graph == null || n <= 0 || graph.size() != n) throw new IllegalArgumentException();
         this.graph = graph;
         this.n = n;
-    }
-
-    public List<Integer> findBridges() {
-
     }
 
     public static void main(String[] args) {
@@ -63,5 +63,45 @@ public class BridgesAdjacencyList {
     public static void addEdge(List<List<Integer>> graph, int from, int to) {
         graph.get(from).add(to);
         graph.get(to).add(from);
+    }
+
+    public List<Integer> findBridges() {
+        if (solved) return bridges;
+
+        id = 0;
+        low = new int[n]; // Low link values
+        ids = new int[n]; // Nodes ids
+        visited = new boolean[n];
+
+        bridges = new ArrayList<>();
+
+        // Finds all bridges in the graph across various connected components.
+        for (int i = 0; i < n; i++) {
+            if (!visited[i]) {
+                dfs(i, -1, bridges);
+            }
+        }
+
+        solved = true;
+        return bridges;
+    }
+
+    private void dfs(int at, int parent, List<Integer> bridges) {
+        visited[at] = true;
+        low[at] = ids[at] = ++id;
+
+        for (Integer to : graph.get(at)) {
+            if (to == parent) continue;
+            if (!visited[to]) {
+                dfs(to, at, bridges);
+                low[at] = min(low[at], low[to]);
+                if (ids[at] < low[to]) {
+                    bridges.add(at);
+                    bridges.add(to);
+                }
+            } else {
+                low[at] = min(low[at], ids[to]);
+            }
+        }
     }
 }
