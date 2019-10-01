@@ -5,6 +5,7 @@ import static java.lang.Math.min;
 
 /**
  * Find all bridges in an undirected graph
+ * NOT MY CODE! See below for actual author
  *
  * @author William Fiset, william.alexandre.fiset@gmail.com
  */
