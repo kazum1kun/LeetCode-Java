@@ -7,18 +7,16 @@ import java.util.*;
  */
 
 public class LetterCombo {
-    private final HashMap<Character, String> numberCharMap = new HashMap<>();
-
-    LetterCombo() {
-        numberCharMap.put('2', "abc");
-        numberCharMap.put('3', "def");
-        numberCharMap.put('4', "ghi");
-        numberCharMap.put('5', "jkl");
-        numberCharMap.put('6', "mno");
-        numberCharMap.put('7', "pqrs");
-        numberCharMap.put('8', "tuv");
-        numberCharMap.put('9', "wxyz");
-    }
+    private final HashMap<Character, String> numberCharMap = new HashMap<Character, String>() {{
+        put('2', "abc");
+        put('3', "def");
+        put('4', "ghi");
+        put('5', "jkl");
+        put('6', "mno");
+        put('7', "pqrs");
+        put('8', "tuv");
+        put('9', "wxyz");
+    }};
 
     public static void main(String[] args) {
         LetterCombo lc = new LetterCombo();
