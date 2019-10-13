@@ -1,31 +1,22 @@
 import java.util.Arrays;
 import java.util.Comparator;
 
+/**
+ * #38 Meeting Room https://leetcode.com/problems/meeting-rooms/
+ * Updated to the new method signature
+ * 40ms/38MB (beats 6.30%/43.59%)
+ */
+
 public class MeetingRoom {
-    public boolean canAttendMeetings(Interval[] intervals) {
-        Arrays.sort(intervals, Comparator.comparingInt(o -> o.start));
+    public boolean canAttendMeetings(int[][] intervals) {
+        Arrays.sort(intervals, Comparator.comparingInt(o -> o[0]));
 
         for (int i = 1; i < intervals.length; i++) {
-            if (intervals[i].start < intervals[i-1].end) {
+            if (intervals[i][0] < intervals[i - 1][1]) {
                 return false;
             }
         }
 
         return true;
-    }
-
-    public class Interval {
-        int start;
-        int end;
-
-        Interval() {
-            start = 0;
-            end = 0;
-        }
-
-        Interval(int s, int e) {
-            start = s;
-            end = e;
-        }
     }
 }
