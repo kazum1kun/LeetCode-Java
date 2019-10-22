@@ -1,6 +1,6 @@
 /**
  * #142 Linked List Cycle II https://leetcode.com/problems/linked-list-cycle-ii/
- * UNFINISHED
+ * 0ms/36.2MB (beats 100.00%/6.32%)
  */
 
 public class LinkedListCycleII {
@@ -8,16 +8,23 @@ public class LinkedListCycleII {
         if (head == null || head.next == null) return null;
 
         ListNode slow = head;
-        ListNode fast = head.next;
+        ListNode fast = head;
 
-        while (slow != fast) {
-            if (fast == null || fast.next == null) {
-                return null;
-            }
+        while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
+
+            if (slow == fast) {
+                ListNode slow2 = head;
+                while (slow != slow2) {
+                    slow = slow.next;
+                    slow2 = slow2.next;
+                }
+
+                return slow;
+            }
         }
 
-        return slow;
+        return null;
     }
 }
